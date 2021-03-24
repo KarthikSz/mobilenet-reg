@@ -1,2 +1,2 @@
-# mobilenet-reg
-Repo to implement image registration with mobilenet base network
+# MobileNet-Registration
+A image registration method using mobilenet base neural network features. This work uses [this repo](https://github.com/imransalam/cnn-registration) as a base.

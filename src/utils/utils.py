@@ -111,7 +111,7 @@ def tps_warp(Y, T, Y_image, out_shape):
 
     return out_image
 
-def checkboard(I1, I2, n=15):
+def checkboard(I1, I2, n=30):
     assert I1.shape == I2.shape
     height, width, channels = I1.shape
     hi, wi = height/n, width/n
@@ -125,13 +125,14 @@ def checkboard(I1, I2, n=15):
         for j in range(n):
             w = int(wi * j)
             w1 = int(w + wi)
-            if (i-j)%2 == 0:
-
+            if np.sum(I2[h:h1, w:w1, :]) == 0:
                 out_image[h:h1, w:w1, :] = I1[h:h1, w:w1, :]
             else:
-                out_image[h:h1, w:w1, :] = I2[h:h1, w:w1, :]
+                if (i-j)%2 == 0:
+                    out_image[h:h1, w:w1, :] = I1[h:h1, w:w1, :]
+                else:
+                    out_image[h:h1, w:w1, :] = I2[h:h1, w:w1, :]
 
     return out_image
-
 
 

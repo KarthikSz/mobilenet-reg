@@ -111,7 +111,7 @@ def tps_warp(Y, T, Y_image, out_shape):
 
     return out_image
 
-def checkboard(I1, I2, n=7):
+def checkboard(I1, I2, n=15):
     assert I1.shape == I2.shape
     height, width, channels = I1.shape
     hi, wi = height/n, width/n

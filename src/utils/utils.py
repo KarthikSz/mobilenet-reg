@@ -111,27 +111,29 @@ def tps_warp(Y, T, Y_image, out_shape):
 
     return out_image
 
-def checkboard(I1, I2, n=30):
+def checkboard(I1, I2, n=40):
     assert I1.shape == I2.shape
     height, width, channels = I1.shape
     hi, wi = height/n, width/n
     outshape = (int(hi*n), int(wi*n), int(channels))
-
-
-    out_image = np.zeros(outshape, dtype='uint8')
-    for i in range(n):
-        h = int(hi * i)
-        h1 = int(h + hi)
-        for j in range(n):
-            w = int(wi * j)
-            w1 = int(w + wi)
-            if np.sum(I2[h:h1, w:w1, :]) == 0:
-                out_image[h:h1, w:w1, :] = I1[h:h1, w:w1, :]
-            else:
-                if (i-j)%2 == 0:
-                    out_image[h:h1, w:w1, :] = I1[h:h1, w:w1, :]
-                else:
-                    out_image[h:h1, w:w1, :] = I2[h:h1, w:w1, :]
+    # out_image = np.zeros(outshape, dtype='uint8')
+    # for i in range(n):
+    #     h = int(hi * i)
+    #     h1 = int(h + hi)
+    #     for j in range(n):
+    #         w = int(wi * j)
+    #         w1 = int(w + wi)
+    #         if np.sum(I2[h:h1, w:w1, :]) == 0:
+    #             out_image[h:h1, w:w1, :] = I1[h:h1, w:w1, :]
+    #         else:
+    #             out_image[h:h1, w:w1, :] = I2[h:h1, w:w1, :]
+    out_image = np.zeros(I1.shape, dtype='uint8')
+    for h in range(height):
+        for w in range(width):
+            if np.sum(I2[h, w, :]) == 0:
+                out_image[h, w, :] =  I1[h, w, :]
+            else :
+                out_image[h, w, :] =  I2[h, w, :]
 
     return out_image
 

@@ -11,6 +11,7 @@ from lap import lapjv
 from utils.shape_context import ShapeContext
 import matplotlib.pyplot as plt
 
+
 class CNN(object):
     def __init__(self):
         self.height = 224

@@ -103,6 +103,8 @@ class CNN(object):
 
         # select prematched feature points
         X, Y = X[C[:, 1]], Y[C[:, 0]]
+        
+        return X,Y
         PD = PD[np.repeat(np.reshape(C[:, 1], [cnt, 1]), cnt, axis=1),
                 np.repeat(np.reshape(C[:, 0], [1, cnt]), cnt, axis=0)]
 
